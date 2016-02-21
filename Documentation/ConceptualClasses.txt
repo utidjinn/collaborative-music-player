@@ -1,0 +1,22 @@
+Logical Classes
+	RoomConfiguration
+		Name
+		Password protected
+		Movement of songs
+	User
+		username
+	UserPriveleges
+		host
+	Room
+		name
+		playlist
+		userlist
+		history
+	Playlist
+		songlist
+	Song
+		source
+		name
+		user who added
+	
+	
