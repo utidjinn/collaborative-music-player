@@ -1,8 +1,0 @@
-Non-functional requirement 1: The system shall be web-based, support Google Chrome version 48+, and shall be developed in Java.
-Non-functional requirement 2: The retrieval of ‘songs’ shall be in a form of [youtube embed OR soundcloud embed OR soundcloud stream+custom music player].
-Non-functional requirement 3: The player will support multiple ‘rooms’ and its individual history will be saved.
-Non-functional requirement 4: Another client’s add request shall appear on the room of another active client’s playlist within 5 seconds.
-Non-functional requirement 5: The software system shall be posted publicly on Github.
-Non-functional requirement 6: The software shall meet coding standards.
-Non-functional requirement 7: The software shall be licensed under MIT license, open source.
-Non-functional requirement 8: The software shall have clear and concise documentation.
