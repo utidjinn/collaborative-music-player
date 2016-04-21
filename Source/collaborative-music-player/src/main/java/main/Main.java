@@ -1,13 +1,22 @@
 package main;
 import static spark.Spark.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
+import freemarker.cache.ClassTemplateLoader;
+import freemarker.template.Configuration;
 import models.User;
+import spark.ModelAndView;
+import spark.template.freemarker.FreeMarkerEngine;
 
 public class Main {	
 	private static SessionFactory sessionFactory;
@@ -27,16 +36,27 @@ public class Main {
 			StandardServiceRegistryBuilder.destroy( registry );
 		}		
 		
-    	staticFileLocation("/root");
+		FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine();
+		Configuration freeMarkerConfiguration = new Configuration();
+		freeMarkerConfiguration.setTemplateLoader(new ClassTemplateLoader(Main.class, "/root/"));
+		freeMarkerEngine.setConfiguration(freeMarkerConfiguration);
+		
     	get("/", (request, response) -> 
     	{
+    		// Example save of object to db
     		Session session = sessionFactory.openSession();
     		session.beginTransaction();
     		session.save( new User("utidjinn", "password", "Ian", "Crutcher", false));
     		session.getTransaction().commit();
     		session.close();
-    		response.redirect("/home.html");
-    		return null;
-    	});
+    		
+    		// Example query on db
+    		session = sessionFactory.openSession();
+    		User user = (User) session.createCriteria(User.class).add(Restrictions.eq("username", "utidjinn")).list().get(0);
+    		
+    		Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user", user);
+    		return new ModelAndView(attributes, "home.ftl");
+    	}, freeMarkerEngine);
     }
 }
