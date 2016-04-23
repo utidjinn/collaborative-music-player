@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.criterion.Restrictions;
 
+import models.Room;
 import models.User;
 
 public class DatabaseManager {
@@ -33,10 +34,22 @@ public class DatabaseManager {
 		session.close();*/
 	}
 	
-	public User getUser(String username)
+	public User getUserById(int userId)
 	{
 		final Session session = sessionFactory.openSession();
-		// Example query on db
-		return (User) session.createCriteria(User.class).add(Restrictions.eq("username", "utidjinn")).list().get(0);	
+		return (User) session.createCriteria(User.class)
+				.add(Restrictions.eq("user_id", userId))
+				.list()
+				.get(0);	
+	}
+	
+	public Room getRoomById(int roomId)
+	{
+		final Session session = sessionFactory.openSession();
+		final Room returnedRoom = (Room) session.createCriteria(Room.class)
+				.add(Restrictions.eq("room_id", roomId))
+				.list()
+				.get(0);
+		return returnedRoom;
 	}
 }
