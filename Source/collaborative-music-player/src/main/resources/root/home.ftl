@@ -5,8 +5,8 @@
 </head>
 <body>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+${user.username}</br>
+${user.password}</br>
 
 <button type="button" onclick="alert('Hello world!')">Click Me!</button>
 
