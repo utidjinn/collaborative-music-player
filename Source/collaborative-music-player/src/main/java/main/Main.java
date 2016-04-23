@@ -4,13 +4,6 @@ import static spark.Spark.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.criterion.Restrictions;
-
 import database.DatabaseManager;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
@@ -39,12 +32,12 @@ public class Main {
     		return new ModelAndView(attributes, "home.ftl");
     	}, freeMarkerEngine);   
     	
-    	/*get("/room/{roomId}", (request, response) ->
+    	/*get("/room/:roomId", (request, response) ->
     	{
     		
     	});*/
     	
-    	/*get("user/{userId}", (request, response) ->
+    	/*get("user/:userId", (request, response) ->
     	{
     		
     	});*/
