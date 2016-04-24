@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -25,6 +27,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private boolean isPrivate;
+	private Room currentRoom;
 	private List<Room> recentlyJoinedRooms;
 	
 	public User() {};
@@ -96,5 +99,15 @@ public class User {
 
 	public void setRecentlyJoinedRooms(List<Room> recentlyJoinedRooms) {
 		this.recentlyJoinedRooms = recentlyJoinedRooms;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name = "current_room_id")
+	public Room getCurrentRoom() {
+		return currentRoom;
+	}
+
+	public void setCurrentRoom(Room currentRoom) {
+		this.currentRoom = currentRoom;
 	}
 }

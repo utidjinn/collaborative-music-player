@@ -1,9 +1,13 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -15,6 +19,7 @@ public class Room {
 	private String name;
 	private long dateCreatedInMillisecondsSinceEpoch;
 	private int hostId;
+	private List<User> currentRoomUsers;
 	
 	public Room(){};
 	
@@ -54,5 +59,14 @@ public class Room {
 	}
 	public void setHostId(int hostId) {
 		this.hostId = hostId;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "currentRoom")
+	public List<User> getCurrentRoomUsers() {
+		return currentRoomUsers;
+	}
+
+	public void setCurrentRoomUsers(List<User> currentRoomUsers) {
+		this.currentRoomUsers = currentRoomUsers;
 	}
 }

@@ -20,6 +20,7 @@ CREATE TABLE `app_user` (
   `first_name` VARCHAR(32) NOT NULL, 
   `last_name` VARCHAR(32) NOT NULL, 
   `isPrivate` TINYINT NOT NULL, 
+  `current_room_id` INTEGER,
   INDEX (`user_id`), 
   PRIMARY KEY (`user_id`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
@@ -87,8 +88,8 @@ SET autocommit=1;
 DROP TABLE IF EXISTS `room_to_users`;
 
 CREATE TABLE `room_to_users` (
-  `room_id` INTEGER NOT NULL, 
-  `user_id` INTEGER NOT NULL, 
+  `user_id` INTEGER NOT NULL,
+  `room_id` INTEGER NOT NULL,    
   PRIMARY KEY (`user_id`), 
   INDEX (`user_id`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
