@@ -31,7 +31,7 @@ public class Main
 		
     	get("/", (request, response) -> 
     	{    		
-    		final User user = databaseManager.getUserById(1);
+    		final User user = databaseManager.getUserById(0);
     		Map<String, Object> attributes = new HashMap<>();
             attributes.put("user", user);
     		return new ModelAndView(attributes, "home.ftl");

@@ -1,15 +1,15 @@
 package database;
 
+import model.Room;
+import model.RoomConfiguration;
+import model.User;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.criterion.Restrictions;
-
-import model.RoomConfiguration;
-import model.Room;
-import model.User;
 
 public class DatabaseManager {
 	private SessionFactory sessionFactory;
@@ -34,7 +34,7 @@ public class DatabaseManager {
 	{
 		final Session session = sessionFactory.openSession();
 		return (User) session.createCriteria(User.class)
-				.add(Restrictions.eq("user_id", userId))
+				.add(Restrictions.eq("id", userId))
 				.list()
 				.get(0);	
 	}
