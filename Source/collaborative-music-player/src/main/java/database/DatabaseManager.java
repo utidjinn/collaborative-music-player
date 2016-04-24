@@ -43,7 +43,7 @@ public class DatabaseManager {
 	{
 		final Session session = sessionFactory.openSession();
 		final Room returnedRoom = (Room) session.createCriteria(Room.class)
-				.add(Restrictions.eq("room_id", roomId))
+				.add(Restrictions.eq("id", roomId))
 				.list()
 				.get(0);
 		return returnedRoom;
