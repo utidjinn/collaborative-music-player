@@ -20,6 +20,7 @@ CREATE TABLE `app_user` (
   `first_name` VARCHAR(32) NOT NULL, 
   `last_name` VARCHAR(32) NOT NULL, 
   `isPrivate` TINYINT NOT NULL, 
+  `current_room_id` INTEGER,
   INDEX (`user_id`), 
   PRIMARY KEY (`user_id`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
@@ -55,7 +56,6 @@ CREATE TABLE `song` (
   `song_name` VARCHAR(32) NOT NULL, 
   `link` VARCHAR(512) NOT NULL, 
   `duration` INTEGER NOT NULL, 
-  `room_history_id` INTEGER NOT NULL, 
   INDEX (`song_id`), 
   PRIMARY KEY (`song_id`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
@@ -79,18 +79,34 @@ CREATE TABLE `room` (
 
 SET autocommit=1;
 
+#
+# Table structure for table 'playlist'
+#
+
+DROP TABLE IF EXISTS `playlist`;
+
+CREATE TABLE `playlist` (
+  `room_id` INTEGER NOT NULL,
+  `song_id` INTEGER NOT NULL,
+  `playlist_index` INTEGER NOT NULL,
+  PRIMARY KEY (`room_id`),
+  INDEX (`room_id`)
+) ENGINE=myisam DEFAULT CHARSET=utf8;
+
+SET autocommit=1;
 
 #
-# Table structure for table 'room_to_users'
+# Table structure for table 'history'
 #
 
-DROP TABLE IF EXISTS `room_to_users`;
+DROP TABLE IF EXISTS `history`;
 
-CREATE TABLE `room_to_users` (
-  `room_id` INTEGER NOT NULL, 
-  `user_id` INTEGER NOT NULL, 
-  PRIMARY KEY (`user_id`), 
-  INDEX (`user_id`)
+CREATE TABLE `history` (
+  `room_id` INTEGER NOT NULL,
+  `song_id` INTEGER NOT NULL,
+  `history_index` INTEGER NOT NULL,
+  PRIMARY KEY (`room_id`),
+  INDEX (`room_id`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
 SET autocommit=1;

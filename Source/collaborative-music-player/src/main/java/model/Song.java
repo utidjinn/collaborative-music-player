@@ -16,14 +16,12 @@ public class Song {
 	private String name;
 	private String link;
 	private int duration;
-	private int roomId;
 	
 	public Song(){}
 	
 	public Song(int submitterUserId, int roomId, String name, String link, int duration)
 	{
 		this.submitterUserId = submitterUserId;
-		this.roomId = roomId;
 		this.name = name;
 		this.link = link;
 		this.duration = duration;
@@ -70,13 +68,5 @@ public class Song {
 
 	public void setDuration(int duration) {
 		this.duration = duration;
-	}
-	@Column(name="room_history_id")
-	public int getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
 	}
 }
