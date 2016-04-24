@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.criterion.Restrictions;
 
 import model.RoomConfiguration;
+import model.RecentRoomEntry;
 import model.Room;
 import model.User;
 
@@ -34,7 +35,7 @@ public class DatabaseManager {
 	{
 		final Session session = sessionFactory.openSession();
 		return (User) session.createCriteria(User.class)
-				.add(Restrictions.eq("user_id", userId))
+				.add(Restrictions.eq("id", userId))
 				.list()
 				.get(0);	
 	}
@@ -65,5 +66,16 @@ public class DatabaseManager {
 		session.close();
 		
 		return newRoom;
+	}
+
+	public void addRoomToUsersRecentRooms(int roomId, int userId) 
+	{
+		final RecentRoomEntry newRecentRoomEntry = new RecentRoomEntry(userId, roomId);
+		
+		final Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(newRecentRoomEntry);
+		session.getTransaction().commit();
+		session.close();
 	}
 }

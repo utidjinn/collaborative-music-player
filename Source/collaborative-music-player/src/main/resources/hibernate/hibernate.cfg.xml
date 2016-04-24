@@ -34,6 +34,7 @@
         <!-- Names the annotated entity class -->
         <mapping class="model.User"/>
         <mapping class="model.Room"/>
+        <mapping class="model.RecentRoomEntry"/>
 
     </session-factory>
 
