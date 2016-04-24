@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -88,11 +90,10 @@ public class User {
 		this.password = password;
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name="recent_rooms", joinColumns =
-	{
-		@JoinColumn(name="user_id")
-	})
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JoinTable(name="recent_rooms", joinColumns = {	@JoinColumn(name="user_id")	}, 
+		inverseJoinColumns = { @JoinColumn(name="room_id")})
 	public List<Room> getRecentlyJoinedRooms() {
 		return recentlyJoinedRooms;
 	}
@@ -101,7 +102,7 @@ public class User {
 		this.recentlyJoinedRooms = recentlyJoinedRooms;
 	}
 	
-	@ManyToOne
+	@ManyToOne	
 	@JoinColumn(name = "current_room_id")
 	public Room getCurrentRoom() {
 		return currentRoom;

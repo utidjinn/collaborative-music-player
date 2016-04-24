@@ -31,6 +31,8 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
+		<property name="hibernate.current_session_context_class">thread</property>
+
         <!-- Names the annotated entity class -->
         <mapping class="model.User"/>
         <mapping class="model.Room"/>

@@ -61,7 +61,7 @@ public class Room {
 		this.hostId = hostId;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "currentRoom")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "currentRoom")
 	public List<User> getCurrentRoomUsers() {
 		return currentRoomUsers;
 	}

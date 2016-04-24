@@ -35,10 +35,12 @@ public class DatabaseManager {
 	public User getUserById(int userId)
 	{
 		final Session session = sessionFactory.openSession();
-		return (User) session.createCriteria(User.class)
+		final User user =  (User) session.createCriteria(User.class)
 				.add(Restrictions.eq("id", userId))
 				.list()
 				.get(0);	
+		session.close();
+		return user;
 	}
 	
 	public Room getRoomById(int roomId)
@@ -48,6 +50,7 @@ public class DatabaseManager {
 				.add(Restrictions.eq("id", roomId))
 				.list()
 				.get(0);
+		session.close();
 		return returnedRoom;
 	}
 	
@@ -69,15 +72,25 @@ public class DatabaseManager {
 		return newRoom;
 	}
 
-	public void addRoomToUsersRecentRooms(int roomId, int userId) 
+	public Room addUserToRoom(int roomId, int userId) 
 	{
-		final RecentRoomEntry newRecentRoomEntry = new RecentRoomEntry(userId, roomId);
+		// Pull user and room from the database
+		final User user = getUserById(userId);
+		final Room room = getRoomById(roomId);
 		
+		room.getCurrentRoomUsers().add(user);
+		user.setCurrentRoom(room);
+		
+		final RecentRoomEntry newRecentRoomEntry = new RecentRoomEntry(userId, roomId);		
 		final Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(newRecentRoomEntry);
+		session.update(user);
+		// we don't have to update the room, as it will be persisted via the user update
 		session.getTransaction().commit();
 		session.close();
+		
+		return room;
 	}
 	
 	public void submitSong(String songLink, int roomId, int userId)

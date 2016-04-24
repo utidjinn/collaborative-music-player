@@ -55,8 +55,7 @@ public class Main
     	get("/room/:roomId", (request, response) ->
     	{
     		int roomId = Integer.parseInt(request.params(":roomId"));
-    		databaseManager.addRoomToUsersRecentRooms(roomId,1);
-    		final Room room = databaseManager.getRoomById(roomId);
+    		final Room room = databaseManager.addUserToRoom(roomId,1);    		
     		Map<String, Object> attributes = new HashMap<>();
             attributes.put("room", room);
     		return new ModelAndView(attributes, "room.ftl");
