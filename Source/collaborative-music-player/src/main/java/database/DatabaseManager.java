@@ -73,6 +73,7 @@ public class DatabaseManager {
 		return newRoom;
 	}
 
+
 	public void addRoomToUsersRecentRooms(int roomId, int userId)
 	{
 		final RecentRoomEntry newRecentRoomEntry = new RecentRoomEntry(userId, roomId);
