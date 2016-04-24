@@ -7,8 +7,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.criterion.Restrictions;
 
-import models.Room;
-import models.User;
+import model.RoomConfiguration;
+import model.Room;
+import model.User;
 
 public class DatabaseManager {
 	private SessionFactory sessionFactory;
@@ -27,11 +28,6 @@ public class DatabaseManager {
 			// so destroy it manually.
 			StandardServiceRegistryBuilder.destroy( registry );
 		}
-		/*Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.save( new User("utidjinn", "password", "Ian", "Crutcher", false));
-		session.getTransaction().commit();
-		session.close();*/
 	}
 	
 	public User getUserById(int userId)
@@ -51,5 +47,23 @@ public class DatabaseManager {
 				.list()
 				.get(0);
 		return returnedRoom;
+	}
+	
+	public Room createRoom(RoomConfiguration roomConfiguration)
+	{
+		Room newRoom = new Room
+		(
+			roomConfiguration.getRoomName(),
+			System.currentTimeMillis(),
+			roomConfiguration.getCreatorId()
+		);			
+		
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(newRoom);
+		session.getTransaction().commit();
+		session.close();
+		
+		return newRoom;
 	}
 }

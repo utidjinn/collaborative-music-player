@@ -32,7 +32,8 @@
         <property name="show_sql">true</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="models.User"/>
+        <mapping class="model.User"/>
+        <mapping class="model.Room"/>
 
     </session-factory>
 
