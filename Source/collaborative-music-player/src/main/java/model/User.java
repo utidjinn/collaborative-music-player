@@ -1,15 +1,23 @@
 package model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="app_user")
+
 public class User {
 	private int id;
 	private String username;
@@ -17,16 +25,18 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private boolean isPrivate;
+	private List<Room> recentlyJoinedRooms;
 	
 	public User() {};
 	
-	public User(String username, String password, String firstName, String lastName, boolean isPrivate)
+	public User(String username, String password, String firstName, String lastName, boolean isPrivate, List<Room> recentRooms)
 	{
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.isPrivate = isPrivate;
+		this.setRecentlyJoinedRooms(recentRooms);
 	}
 	
 	@Id	
@@ -73,5 +83,18 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name="recent_rooms", joinColumns =
+	{
+		@JoinColumn(name="user_id")
+	})
+	public List<Room> getRecentlyJoinedRooms() {
+		return recentlyJoinedRooms;
+	}
+
+	public void setRecentlyJoinedRooms(List<Room> recentlyJoinedRooms) {
+		this.recentlyJoinedRooms = recentlyJoinedRooms;
 	}
 }
