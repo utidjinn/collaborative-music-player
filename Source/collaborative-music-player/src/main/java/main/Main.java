@@ -62,7 +62,7 @@ public class Main
     	}, freeMarkerEngine);
     	
     	// Submit Song form post
-    	post("/room/:roomId/submitSong", (request, response) ->
+    	post("/room/:roomId/playlist/submitSong", (request, response) ->
     	{
     		final int roomId = Integer.parseInt(request.params(":roomId"));
     		final String songLink = request.queryParams("songLink");

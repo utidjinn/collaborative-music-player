@@ -1,5 +1,8 @@
 package database;
 
+import java.util.List;
+
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -50,6 +53,8 @@ public class DatabaseManager {
 				.add(Restrictions.eq("id", roomId))
 				.list()
 				.get(0);
+		Hibernate.initialize(returnedRoom.getPlaylist());
+		Hibernate.initialize(returnedRoom.getHistory());
 		session.close();
 		return returnedRoom;
 	}
@@ -96,9 +101,11 @@ public class DatabaseManager {
 	public void submitSong(String songLink, int roomId, int userId)
 	{
 		final Song newSong = new Song(userId, roomId, "Never Gonna Give You Up", songLink, 10);
+		final Room room = getRoomById(roomId);
+		room.getPlaylist().add(newSong);
 		final Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(newSong);
+		session.update(room); // room will persist song to relevant tables?
 		session.getTransaction().commit();
 		session.close();
 	}
