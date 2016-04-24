@@ -62,6 +62,16 @@ public class Main
     		return new ModelAndView(attributes, "room.ftl");
     	}, freeMarkerEngine);
     	
+    	// Submit Song form post
+    	post("/room/:roomId/submitSong", (request, response) ->
+    	{
+    		final int roomId = Integer.parseInt(request.params(":roomId"));
+    		final String songLink = request.queryParams("songLink");
+    		databaseManager.submitSong(songLink, roomId, 1);    		
+    		response.redirect("/room/"+roomId);
+    		return "Song submitted succesfully. Redirecting...";
+    	});
+    	
     	// User Account Information Page
     	get("/user/:userId", (request, response) ->
     	{   		

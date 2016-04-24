@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.criterion.Restrictions;
 
 import model.RoomConfiguration;
+import model.Song;
 import model.RecentRoomEntry;
 import model.Room;
 import model.User;
@@ -75,6 +76,16 @@ public class DatabaseManager {
 		final Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(newRecentRoomEntry);
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	public void submitSong(String songLink, int roomId, int userId)
+	{
+		final Song newSong = new Song(userId, roomId, "Never Gonna Give You Up", songLink, 10);
+		final Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(newSong);
 		session.getTransaction().commit();
 		session.close();
 	}

@@ -35,6 +35,7 @@
         <mapping class="model.User"/>
         <mapping class="model.Room"/>
         <mapping class="model.RecentRoomEntry"/>
+        <mapping class="model.Song"/>
 
     </session-factory>
 
