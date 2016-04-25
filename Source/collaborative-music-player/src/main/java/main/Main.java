@@ -32,7 +32,7 @@ public class Main
 		// Home page		
     	get("/", (request, response) -> 
     	{    		
-    		final User user = databaseManager.getUserById(0);
+    		final User user = databaseManager.getUserById(1);
     		Map<String, Object> attributes = new HashMap<>();
             attributes.put("user", user);
     		return new ModelAndView(attributes, "home.ftl");
@@ -55,15 +55,14 @@ public class Main
     	get("/room/:roomId", (request, response) ->
     	{
     		int roomId = Integer.parseInt(request.params(":roomId"));
-    		databaseManager.addRoomToUsersRecentRooms(roomId,1);
-    		final Room room = databaseManager.getRoomById(roomId);
+    		final Room room = databaseManager.addUserToRoom(roomId,1);    		
     		Map<String, Object> attributes = new HashMap<>();
             attributes.put("room", room);
     		return new ModelAndView(attributes, "room.ftl");
     	}, freeMarkerEngine);
     	
     	// Submit Song form post
-    	post("/room/:roomId/submitSong", (request, response) ->
+    	post("/room/:roomId/playlist/submitSong", (request, response) ->
     	{
     		final int roomId = Integer.parseInt(request.params(":roomId"));
     		final String songLink = request.queryParams("songLink");
