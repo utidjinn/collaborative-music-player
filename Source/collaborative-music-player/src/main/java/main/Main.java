@@ -15,12 +15,12 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 public class Main 
 {	
-	
+	private static final String HIBERNATE_CFG = "hibernate/hibernate.cfg.xml";
 	private static DatabaseManager databaseManager;
 	
     public static void main(String[] args) 
     {    	    	
-    	databaseManager = new DatabaseManager();
+    	databaseManager = new DatabaseManager(HIBERNATE_CFG);
     	
     	FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine();
 		Configuration freeMarkerConfiguration = new Configuration();

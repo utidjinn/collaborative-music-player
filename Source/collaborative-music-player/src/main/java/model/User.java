@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -102,8 +101,8 @@ public class User {
 		this.recentlyJoinedRooms = recentlyJoinedRooms;
 	}
 	
-	@ManyToOne	
-	@JoinColumn(name = "current_room_id")
+	@ManyToOne
+	@JoinColumn(name="current_room_id")
 	public Room getCurrentRoom() {
 		return currentRoom;
 	}
