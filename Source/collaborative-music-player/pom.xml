@@ -19,12 +19,30 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.37</version>
+      <version>5.1.38</version>
     </dependency>
     <dependency>
       <groupId>com.sparkjava</groupId>
       <artifactId>spark-template-freemarker</artifactId>
       <version>2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-chrome-driver</artifactId>
+      <version>2.53.0</version>
+      <scope>test</scope>
+    </dependency>  
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>2.3.3</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
