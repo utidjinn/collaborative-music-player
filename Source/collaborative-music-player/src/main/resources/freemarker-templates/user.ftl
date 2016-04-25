@@ -18,7 +18,7 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Collaborative-Music-Player</a>
           <p class="navbar-text text-center"><span class="glyphicon glyphicon-user" aria-hidden="true" />
-          Signed in as ${user.username} : PW(${user.password}) </p>
+          Signed in as ${user.username}</p>
           <form class="navbar-form navbar-right form-search" role="search">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Search...">
@@ -30,13 +30,13 @@
             </div>
           </form>
           <button id="btn-create-room" type="button" class="btn btn-default navbar-btn btn-createRoom">Create Room</button>
-         
+
         </div>
       </div>
     </nav>
 
     <!-- sidebar activity -->
-    <div class="col-xs-7 col-sm-3 col-md-3 sidebar sidebar-right sidebar-animate" style="float: right;min-height:100%;" >
+<!--     <div class="col-xs-7 col-sm-3 col-md-3 sidebar sidebar-right sidebar-animate" style="float: right;min-height:100%;" >
       <h2>Activity Feed</h2>
       <div class="activity-feed">
         <div class="feed-item">
@@ -49,6 +49,7 @@
         </div>
       </div>
     </div>
+ -->
 
     <!-- profile card -->
     <div class="container profile-card">
@@ -70,26 +71,28 @@
     </div>
 
     <!-- navigation tabs -->
+    <!-- Added Songs
+    Recent Rooms
+    Liked Songs -->
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#playlist-tab">Playlist</a></li>
-      <li><a data-toggle="tab" href="#history-tab">History</a></li>
-      <li><a data-toggle="tab" href="#users-tab">Users</a></li>
+      <li class="active"><a data-toggle="tab" href="#addedSongs-tab">Added Songs</a></li>
+      <li><a data-toggle="tab" href="#recentRooms-tab">Recent Rooms</a></li>
+      <li><a data-toggle="tab" href="#likedSongs-tab">Liked Songs</a></li>
     </ul>
     <div class="tab-content">
-      <div id="playlist-tab" class="tab-pane fade in active">
-        <h3>Playlist</h3>
+      <div id="addedSongs-tab" class="tab-pane fade in active">
+        <h3>Added Songs</h3>
         <p>Some content in playlist.</p>
       </div>
-      <div id="history-tab" class="tab-pane fade">
-        <h3>History</h3>
+      <div id="recentRooms-tab" class="tab-pane fade">
+        <h3>Recent Rooms</h3>
         <p>Some content in history.</p>
       </div>
-      <div id="users-tab" class="tab-pane fade">
-        <h3>Users</h3>
+      <div id="likedSongs-tab" class="tab-pane fade">
+        <h3>Liked Songs</h3>
         <p>Some content in users.</p>
       </div>
     </div>
-
 
 
   </body>

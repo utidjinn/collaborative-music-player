@@ -68,3 +68,8 @@ div .sidebar {
   position: relative;
   top: -3px;
 }
+
+.youtubePlayer {
+	margin-top: 10px;
+	margin-left: 10px;
+}

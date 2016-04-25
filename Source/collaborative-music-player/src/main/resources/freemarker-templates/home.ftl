@@ -17,7 +17,7 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Collaborative-Music-Player</a>
           <p class="navbar-text text-center"><span class="glyphicon glyphicon-user" aria-hidden="true" />
-          Signed in as ${user.username} : PW(${user.password}) </p>
+          Signed in as ${user.username}</p>
         </div>
         <form class="navbar-form navbar-right form-search" role="search">
           <div class="form-group">
