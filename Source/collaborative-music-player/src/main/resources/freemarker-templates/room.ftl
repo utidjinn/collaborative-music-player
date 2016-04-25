@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/global-javascript.js"></script>
 <title>Collaborative Music Player</title>
 </head>
 <body>

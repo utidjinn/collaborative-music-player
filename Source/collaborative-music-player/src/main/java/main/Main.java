@@ -78,6 +78,6 @@ public class Main
     		Map<String, Object> attributes = new HashMap<>();
             attributes.put("user", user);
     		return new ModelAndView(attributes, "user.ftl");
-    	});
+    	}, freeMarkerEngine);
     }
 }
