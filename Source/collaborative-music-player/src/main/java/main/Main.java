@@ -56,8 +56,10 @@ public class Main
     	{
     		int roomId = Integer.parseInt(request.params(":roomId"));
     		final Room room = databaseManager.addUserToRoom(roomId,1);    		
+    		final User user = databaseManager.getUserById(1);
     		Map<String, Object> attributes = new HashMap<>();
             attributes.put("room", room);
+            attributes.put("user", user);
     		return new ModelAndView(attributes, "room.ftl");
     	}, freeMarkerEngine);
     	
@@ -78,6 +80,6 @@ public class Main
     		Map<String, Object> attributes = new HashMap<>();
             attributes.put("user", user);
     		return new ModelAndView(attributes, "user.ftl");
-    	});
+    	}, freeMarkerEngine);
     }
 }

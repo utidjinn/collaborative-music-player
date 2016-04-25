@@ -154,4 +154,13 @@ public class DatabaseManager {
 		session.close();
 		return newSong;
 	}
+	
+	public List<Room> getListofRooms(int max)
+	{
+		final Session session = sessionFactory.openSession();
+		final List<Room> returnedRooms = session.createCriteria(Room.class).setMaxResults(10)
+				.list();
+		session.close();
+		return returnedRooms;
+	}
 }

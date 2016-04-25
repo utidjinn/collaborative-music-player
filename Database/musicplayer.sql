@@ -86,10 +86,11 @@ SET autocommit=1;
 DROP TABLE IF EXISTS `playlist`;
 
 CREATE TABLE `playlist` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `room_id` INTEGER NOT NULL,
   `song_id` INTEGER NOT NULL,
   `playlist_index` INTEGER NOT NULL,
-  PRIMARY KEY (`room_id`),
+  PRIMARY KEY (`id`),
   INDEX (`room_id`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
